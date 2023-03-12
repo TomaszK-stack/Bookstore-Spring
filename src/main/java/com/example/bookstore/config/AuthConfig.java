@@ -31,7 +31,7 @@ public class AuthConfig {
                 .permitAll()
                 .requestMatchers("/api/v1/admin/**")
                 .hasRole("ADMIN")
-                .requestMatchers("/api/v1/books/**", "/api/v1/basket/**")
+                .requestMatchers("/api/v1/books/**", "/api/v1/basket/**","/api/v1/checkout/**" )
                 .authenticated()
                 .and()
                 .sessionManagement()

@@ -34,4 +34,7 @@ public class Book implements Serializable {
     @Column(name = "price")
     private Double price;
 
+    @Column(name = "cover")
+    private String cover;
+
 }

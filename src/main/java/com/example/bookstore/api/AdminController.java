@@ -8,6 +8,7 @@ import com.example.bookstore.requests.OrderChangeStateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,25 +22,21 @@ public class AdminController {
     @Autowired
     OrdersService ordersService;
 
-    @PostMapping("/add/book")
-    public ResponseEntity<String> add_book(@RequestBody BookRequest bookRequest){
+    @PostMapping("/book/add")
+    public ResponseEntity<String> add_book(@RequestBody BookRequest bookRequest,@RequestParam("file") MultipartFile photo ){
 
         return bookservice.add(bookRequest);
 
     }
-    @PostMapping("/delete/book")
+    @PostMapping("/book/delete")
     public ResponseEntity<String> delete_book(@RequestBody int id){
 
         return bookservice.delete(id);
 
     }
 
-    @PostMapping("/test")
-    public String test(){
 
-        return "test";
 
-    }
 
     @GetMapping("/orders/list")
     public List<Orders> get_list_of_orders(){
@@ -51,6 +48,7 @@ public class AdminController {
         ordersService.change_order_state(or);
 
     }
+
 
 
 

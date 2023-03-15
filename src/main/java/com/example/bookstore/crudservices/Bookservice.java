@@ -30,7 +30,7 @@ public class Bookservice {
             var book = Book.builder()
                     .title(bookRequest.getTitle())
                     .author(bookRequest.getAuthor())
-                    .publicationyear(bookRequest.getPublicationDate())
+                    .publicationyear(bookRequest.getPublicationyear())
                     .build();
             bookRepository.save(book);
         } catch (Exception e) {

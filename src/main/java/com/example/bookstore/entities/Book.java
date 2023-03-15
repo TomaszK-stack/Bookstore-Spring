@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Table(name = "book")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Book implements Serializable {
+public class Book  implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class Book implements Serializable {
     @Column(name = "price")
     private Double price;
 
-    @Column(name = "cover")
+    @Column(name = "cover", columnDefinition = "varchar(255) default http://localhost:8080/images/product-not-found.png" )
     private String cover;
 
 }

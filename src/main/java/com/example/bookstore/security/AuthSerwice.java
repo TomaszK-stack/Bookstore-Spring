@@ -1,8 +1,8 @@
 package com.example.bookstore.security;
 
-import com.example.bookstore.entities.Basket;
+import com.example.bookstore.entities.Cart;
 import com.example.bookstore.entities.User;
-import com.example.bookstore.repositories.BasketRepository;
+import com.example.bookstore.repositories.CartRepository;
 import com.example.bookstore.repositories.UserRepository;
 import com.example.bookstore.requests.AuthRequest;
 import com.example.bookstore.requests.AuthResponse;
@@ -25,16 +25,16 @@ public class AuthSerwice {
 
     private final PasswordEncoder passwordEncoder;
 
-    private final BasketRepository basketRepository;
+    private final CartRepository cartRepository;
 
 
     @Autowired
-    public AuthSerwice(JwtService jwtService, AuthenticationManager authenticationManager, UserRepository userDao, PasswordEncoder passwordEncoder, BasketRepository basketRepository) {
+    public AuthSerwice(JwtService jwtService, AuthenticationManager authenticationManager, UserRepository userDao, PasswordEncoder passwordEncoder, CartRepository cartRepository) {
         this.jwtService = jwtService;
         this.authenticationManager = authenticationManager;
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
-        this.basketRepository = basketRepository;
+        this.cartRepository = cartRepository;
     }
 
     public boolean register_walidace(RegisterRequest request) {
@@ -54,10 +54,10 @@ public class AuthSerwice {
                     .build();
             try {
                 userDao.save(user);
-                var basket = Basket.builder()
+                var basket = Cart.builder()
                         .user(user)
                         .build();
-                basketRepository.save(basket);
+                cartRepository.save(basket);
 
 
             } catch (ConstraintViolationException e) {

@@ -1,5 +1,6 @@
 package com.example.bookstore.api;
 
+import com.example.bookstore.crudservices.CartService;
 import com.example.bookstore.entities.PaypalOrder;
 import com.example.bookstore.paymentsDTO.*;
 import com.example.bookstore.paymentsserwice.*;
@@ -16,15 +17,16 @@ public class PaymenController {
     private final PayPalHttpClient payPalHttpClient;
     private final PaypalOrderRepository orderDAO;
 
-
+    private final CartService cartService;
 
 
 
     @PostMapping
     public ResponseEntity<OrderResponseDTO> checkout(@RequestBody OrderDTO orderDTO) throws Exception {
+        cartService.submit_order();
         var appContext = new PayPalAppContextDTO();
         appContext.setReturnUrl("http://localhost:8080/api/v1/checkout/success");
-        appContext.setBrandName("My brand");
+        appContext.setBrandName("Bookstore");
         appContext.setLandingPage(PaymentLandingPage.BILLING);
         orderDTO.setApplicationContext(appContext);
 
@@ -38,7 +40,6 @@ public class PaymenController {
             var out = orderDAO.save(entity);
             return ResponseEntity.ok(orderResponse);
         }catch(NullPointerException n){
-            System.out.printf(String.valueOf(orderResponse));
             return ResponseEntity.ok(orderResponse);
 
 

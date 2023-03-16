@@ -13,8 +13,8 @@
 * JWT (JSON Web Tokens)
 * PayPal Api
 
-There are three user accounts :
 
+Url endpoints:
 
 ```
 /auth - authentication endpoint (HTTP method: POST) - place your credentials in JSON format in request body as JwtAuthenticationRequest 
@@ -28,5 +28,4 @@ Use Bearer Token for any listed request:
 ```
 
 
-### Set up MySQL
-Configure database according to [application.properties](https://github.com/Kvark900/spring-boot-rest-api/blob/master/src/main/resources/application.properties) file, or update this file with yours properties.
+

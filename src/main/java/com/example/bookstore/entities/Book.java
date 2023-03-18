@@ -31,10 +31,10 @@ public class Book  implements Serializable {
     @Column(name = "publication_date", nullable = true)
     private Integer publicationyear;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private Double price;
 
-    @Column(name = "cover", columnDefinition = "varchar(255) default http://localhost:8080/images/product-not-found.png" )
+    @Column(name = "cover" )
     private String cover;
 
 }

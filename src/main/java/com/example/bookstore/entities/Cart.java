@@ -24,21 +24,21 @@ public class Cart {
     @Column
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "basket_books",
-            joinColumns = @JoinColumn(name = "basket_id"),
+            name = "cart_books",
+            joinColumns = @JoinColumn(name = "cart_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     List<Book> bookList;
 
-    public void add_to_basket(Book book){
+    public void add_to_cart(Book book){
         bookList.add(book);
     }
 
-    public void delete_from_basket(Book book){
+    public void delete_from_cart(Book book){
         bookList.remove(book);
 
     }
-    public void delete_all_from_basket(){
+    public void delete_all_from_cart(){
         bookList.removeAll(bookList);
 
     }

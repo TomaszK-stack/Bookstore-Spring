@@ -2,8 +2,8 @@ package com.example.bookstore.api;
 
 
 import com.example.bookstore.crudservices.CartService;
-import com.example.bookstore.requests.BasketResponse;
 import com.example.bookstore.requests.BookAddRequest;
+import com.example.bookstore.requests.CartResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +15,18 @@ public class CartController {
     private CartService cartService;
 
     @GetMapping("/list")
-    public ResponseEntity<BasketResponse> list_of_books(){
+    public ResponseEntity<CartResponse> list_of_books(){
 
-        return ResponseEntity.ok(cartService.create_basket_response());
+        return ResponseEntity.ok(cartService.create_cart_response());
     }
 
     @PostMapping("/add")
-    public void add_book_to_basket(@RequestBody BookAddRequest br){
+    public void add_book_to_cart(@RequestBody BookAddRequest br){
         cartService.add(br);
     }
 
     @PostMapping("/delete")
-    public void delete_book_from_basket(@RequestBody int id){
+    public void delete_book_from_cart(@RequestBody int id){
         cartService.delete(id);
     }
 

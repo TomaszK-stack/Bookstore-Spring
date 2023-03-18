@@ -54,10 +54,10 @@ public class AuthSerwice {
                     .build();
             try {
                 userDao.save(user);
-                var basket = Cart.builder()
+                var cart = Cart.builder()
                         .user(user)
                         .build();
-                cartRepository.save(basket);
+                cartRepository.save(cart);
 
 
             } catch (ConstraintViolationException e) {

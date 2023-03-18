@@ -23,7 +23,7 @@ public class PaymenController {
 
     @PostMapping
     public ResponseEntity<OrderResponseDTO> checkout(@RequestBody OrderDTO orderDTO) throws Exception {
-        cartService.submit_order();
+
         var appContext = new PayPalAppContextDTO();
         appContext.setReturnUrl("http://localhost:8080/api/v1/checkout/success");
         appContext.setBrandName("Bookstore");
@@ -38,21 +38,25 @@ public class PaymenController {
             entity.setPaypalOrderId(orderResponse.getId());
             entity.setPaypalOrderStatus(orderResponse.getStatus().toString());
             var out = orderDAO.save(entity);
-            return ResponseEntity.ok(orderResponse);
+
         }catch(NullPointerException n){
             return ResponseEntity.ok(orderResponse);
 
 
         }
+        cartService.submit_order();
+        return ResponseEntity.ok(orderResponse);
     }
 
     @GetMapping(value = "/success")
-    public ResponseEntity paymentSuccess(HttpServletRequest request) {
+    public ResponseEntity<String> paymentSuccess(HttpServletRequest request) {
+
+
         var orderId = request.getParameter("token");
         var out = orderDAO.findByPaypalOrderId(orderId);
         out.setPaypalOrderStatus(OrderStatus.APPROVED.toString());
         orderDAO.save(out);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Payment Succeed");
     }
 
 

@@ -1,8 +1,6 @@
 package com.example.bookstore.config;
 
 import com.example.bookstore.repositories.UserRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +19,6 @@ public class MainConfig {
     @Autowired
     private UserRepository userDao;
 
-    @PersistenceContext
-    EntityManager entityManager;
 
     @Bean
     public UserDetailsService userDetailsService(){

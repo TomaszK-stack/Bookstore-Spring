@@ -23,13 +23,13 @@ public class AdminController {
     @Autowired
     OrdersService ordersService;
 
-    @PostMapping("/book/add")
+    @PostMapping("/book")
     public ResponseEntity<String> add_book(@RequestBody BookRequest bookRequest,@RequestParam("file") MultipartFile photo ){
 
         return bookservice.add(bookRequest);
 
     }
-    @PostMapping("/book/delete")
+    @DeleteMapping("/book")
     public ResponseEntity<String> delete_book(@RequestBody int id){
 
         return bookservice.delete(id);
@@ -51,8 +51,7 @@ public class AdminController {
     @PostMapping("/orders/state/change")
     public void change_order_state(@RequestBody OrderChangeStateRequest or){
         ordersService.change_order_state(or);
-
-    }
+        }
 
 
 

@@ -1,7 +1,6 @@
 package com.example.bookstore.api;
 
 
-import com.example.bookstore.crudservices.Bookservice;
 import com.example.bookstore.entities.Book;
 import com.example.bookstore.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,7 @@ public class MainController {
     @Autowired
     BookRepository bookRepository;
 
-    @Autowired
-    Bookservice bookservice;
+
 
     @GetMapping("/list")
     public ResponseEntity<List<Book>> get_all_book() {
